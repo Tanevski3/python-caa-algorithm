@@ -18,12 +18,27 @@ while True:
             [0, 1, 0, 0, 1, 0],
             [0, 1, 0, 0, 0, 2]]
 
-    happy = ['O']
-    sad = ['J', 'H', 'T']
-    g = Graph([('A', 'B'), ('A', 'F'), ('B', 'C'), ('C', 'D'), ('C', 'H'), ('D', 'E'), ('C', 'H'), ('E', 'J'),
-               ('F', 'G'), ('F', 'K'), ('G', 'L'), ('H', 'I'), ('I', 'N'), ('I', 'J'),
-               ('K', 'L'), ('K', 'P'), ('L', 'M'), ('M', 'R'), ('N', 'S'), ('N', 'O'),
-               ('P', 'Q'), ('R', 'S'), ('S', 'T')], start='A', directed=False, whos_happy=happy, whos_sad=sad)
+    dict = {
+        'A': ['B', 'F'],
+        'B': ['C'],
+        'C': ['D', 'H'],
+        'D': ['E'],
+        'E': ['J'],
+        'F': ['G', 'K'],
+        'G': ['L'],
+        'H': ['I'],
+        'I': ['N', 'J'],
+        'K': ['L','P'],
+        'L': ['M'],
+        'M': ['R'],
+        'N': ['S', 'O'],
+        'P': ['Q'],
+        'R': ['S'],
+        'S': ['T']
+
+    }
+
+    g = Graph(dict, start='A', directed=False, whos_happy=['O'], whos_sad=['J', 'H', 'T'])
     #
     # print("W connected to N: " + str(g.is_connected('W', 'N')))
     #
