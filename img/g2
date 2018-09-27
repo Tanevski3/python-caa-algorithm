@@ -1,0 +1,72 @@
+graph {
+	A
+	B
+	C
+	D
+	E
+	F
+	G
+	H
+	I
+	J
+	K
+	L
+	M
+	N
+	O
+	P
+	Q
+	R
+	S
+	T
+		A -- B
+		A -- F
+		B -- A
+		B -- C
+		C -- B
+		C -- D
+		C -- H
+		D -- C
+		D -- E
+		E -- D
+		E -- J
+		F -- A
+		F -- G
+		F -- K
+		G -- F
+		G -- L
+		H -- C
+		H -- I
+		I -- H
+		I -- N
+		I -- J
+		J -- E
+		J -- I
+		J -- K
+		K -- F
+		K -- J
+		K -- L
+		K -- P
+		L -- G
+		L -- K
+		L -- M
+		M -- L
+		M -- R
+		N -- I
+		N -- S
+		N -- O
+		O -- N
+		O -- P
+		P -- K
+		P -- O
+		P -- Q
+		Q -- P
+		Q -- R
+		R -- M
+		R -- Q
+		R -- S
+		S -- N
+		S -- R
+		S -- T
+		T -- S
+}
