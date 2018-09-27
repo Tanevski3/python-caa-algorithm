@@ -64,30 +64,29 @@ class Graph:
     def __init__(self, nodes_and_connections, start=None, directed=False, whos_happy=[], whos_sad=[]):
         self._graph = {}
         self._directed = directed
-        self.create_all_nodes(nodes_and_connections, start, whos_happy, whos_sad)
-        self.connect_all_nodes(nodes_and_connections)
+        self._create_all_nodes(nodes_and_connections, start, whos_happy, whos_sad)
+        self._connect_all_nodes(nodes_and_connections)
         self._current = self.__get_node(start)
         self._previous = self.__get_node(start)
         self._next = []
 
     def current(self):
-        return self.__get_node(self._current)
+        return self._current
 
     def previous(self):
-        return self.__get_node(self._previous)
+        return self._previous
 
     def next(self):
         return self._graph[self._current]
 
     def go_to(self, node_name):
-        node = Node(node_name)
-        previous_node = self.__get_node(self._current)
-        current_node = self.__get_node(node)
-        previous_node.inc_weight()
+        previous_node = self._current
+        next_node = self.__get_node(node_name)
         # nodes = self.__get_node_appearances(previous_node)
         # [n.inc_weight() for n in nodes]
         self._previous = previous_node
-        self._current = current_node
+        next_node.inc_weight()
+        self._current = next_node
         return self._current
 
     def __get_node_appearances(self,node):
@@ -99,7 +98,7 @@ class Graph:
         return nodes
 
     def __get_node(self,node_name):
-        for key in self._graph.items():
+        for key in self._graph:
             if key.get_name() == node_name:
                 return key
 
@@ -107,7 +106,7 @@ class Graph:
 
     def _create_all_nodes(self, nodes_and_connections, start, whos_happy=[], whos_sad=[]):
 
-        for key in nodes_and_connections.items():
+        for key in nodes_and_connections:
             self._create_node(key, start, whos_happy, whos_sad)
 
     def _create_node(self, node_name, start, whos_happy=[], whos_sad=[]):
@@ -116,7 +115,9 @@ class Graph:
 
         if node_name in whos_happy: node.set_happy(True)
         if node_name in whos_sad: node.set_happy(False)
-        if node_name == start: node.set_start(True)
+        if node_name == start:
+            node.set_start(True)
+            node.inc_weight()
 
         self._graph[node] = []
 
@@ -170,6 +171,9 @@ class Graph:
                 if new_path:
                     return new_path
         return None
+
+    def get_graph(self):
+        return self._graph
 
     def __str__(self):
         return '{}({})'.format(self.__class__.__name__, self._graph)
