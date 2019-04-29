@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/python-caa-algorithm.iml" filepath="$PROJECT_DIR$/.idea/python-caa-algorithm.iml" />
-      <module fileurl="file://C:\Users\mtanevski\PycharmProjects\python-caa-algorithm\.idea\test.iml" filepath="C:\Users\mtanevski\PycharmProjects\python-caa-algorithm\.idea\test.iml" />
-    </modules>
-  </component>
-</project>
