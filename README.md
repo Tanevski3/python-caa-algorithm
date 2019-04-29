@@ -1,4 +1,4 @@
-# python-caa-algorithm
+# Python implementation of CAA algorithm with example usage
 Python implementation of the Crossbar Adaptive Array (WIP)
 
 # Requirements
