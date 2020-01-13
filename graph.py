@@ -1,7 +1,8 @@
+import random
+
 class Node:
-    def __init__(self, name= "?", weight=0, happy=None, start=None):
+    def __init__(self, name= "?", happy=None, start=None):
         self.__name = name
-        self.__weight = weight
         self.__happy = happy
         self.__start = start
 
@@ -10,13 +11,6 @@ class Node:
 
     def set_name(self, name):
         self.__name = name
-
-    def get_weight(self):
-        return self.__weight
-
-    def inc_weight(self):
-        print('Incrementing weight for ' + self.get_name())
-        self.__weight = self.__weight + 1
 
     def get_happy(self):
         return self.__happy
@@ -31,7 +25,7 @@ class Node:
         self.__start = start
 
     def __str__(self):
-        return self.__name + str(self.__weight)
+        return self.__name
 
     def __repr__(self):
         return self.__str__()
@@ -48,27 +42,152 @@ class Node:
             return not self.__eq__(other)
         return NotImplemented
 
-    def __hash__(self) -> str:
+    def __hash__(self) -> int:
         return hash(self.__name)
 
+class Connection:
+    def __init__(self, node1, node2, weight=0):
+        self.__f = node1
+        self.__t = node2
+        self.__weight = weight
 
-# class NodeName(str):
-#     def __init__(self, value = "?", weight=0):
-#         super().__init__(value)
-#         self.__weight = weight
+
+    def get_weight(self):
+        return self.__weight
+
+    def inc_weight(self):
+        self.__weight = self.__weight + 1
+
+    def f(self):
+        return self.__f
+
+    def t(self):
+        return self.__t
+
+    def has_node(self, node):
+        return self.__f == node or self.__t == node
+
+    def __str__(self):
+        return '{' + self.__f.name + "->" + self.__t.name + '}' + str(self.__weight)
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __eq__(self, other):
+        """Override the default Equals behavior"""
+        if isinstance(other, self.__class__):
+            return self.__f == other.__f and self.__t == other.__t
+        return NotImplemented
+
+    def __ne__(self, other):
+        """Define a non-equality python-caa-algorithm"""
+        if isinstance(other, self.__class__):
+            return not self.__eq__(other)
+        return NotImplemented
+
+    def __hash__(self) -> int:
+        return hash(self.__f.name) + hash(self.__t.name)
+
+class CaaLgorithmIterator:
+
+    def __init__(self, graph, start):
+        self._graph = graph
+        self._current = Node(start)
+        self._history = []
+        self._history.add(self._current.clone())
+
+    public
+    List < Node > adjacent()
+    {
+    return this.graph.getAdjacentNodes(this.current.getName());
+    }
+
+    public
+    Node
+    current()
+    {
+    return this.current;
+
+}
+
+public
+List < Node > history()
+{
+return this.history;
+}
+
+public
+Node
+last()
+{
+return this.history.get(this.history.size() - 1);
+}
+
+@Override
+
+
+public
+boolean
+hasNext()
+{
+return !this.current.isHappy();
+}
+
+@Override
+
+
+public
+Node
+next()
+{
+this.applyAlgorithm();
+return this.current;
+}
+
+private
+void
+applyAlgorithm()
+{
+if (!this.hasNext()) {
+System.out.println("Already REACHED happy node. No more iterations");
+return;
+}
+
+List < Connection < Node >> adjacent = this.graph.getAdjacent(this.current.getName());
+Optional < Connection < Node >> pickedConnection = adjacent.stream().min((con1, con2) -> {
+if (!con1.getWeight().equals(con2.getWeight())) {
+return con1.getWeight() - con2.getWeight();
+} else {
+boolean
+pickFirst = random.nextBoolean();
+return pickFirst ? 0: -1;
+}
+});
+
+this.history.add(this.current.clone());
+this.current = pickedConnection.orElse(new
+Connection <> (this.current, this.current)).to();
+if (!this.hasNext()) {
+    this.history.add(this.current.clone());
+}
+this.graph.incWeight(this.last(), this.current);
+}
 
 
 class Graph:
     """ Graph data structure, undirected by default. """
 
-    def __init__(self, nodes_and_connections, start=None, directed=False, whos_happy=[], whos_sad=[]):
-        self._graph = {}
-        self._directed = directed
-        self._create_all_nodes(nodes_and_connections, start, whos_happy, whos_sad)
+    def __init__(self, nodes_and_connections, start=None, bidirectional=True, whos_happy=[], whos_sad=[]):
+        self._nodes = []
+        self._connections = []
+        self._bidirectional = bidirectional
+        self._whos_happy = whos_happy
+        self._whos_sad = whos_sad
+        self._create_all_nodes(nodes_and_connections, start, self._whos_happy, self._whos_sad)
         self._connect_all_nodes(nodes_and_connections)
         self._current = self.__get_node(start)
         self._previous = self.__get_node(start)
-        self._next = []
+        self._iterator = CaaLgorithmIterator(self, start);
 
     def current(self):
         return self._current

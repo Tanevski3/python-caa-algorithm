@@ -71,8 +71,10 @@ while True:
     print("Path from 'A' to 'E': " + str(g.find_path('A', 'E')))
 
     print("Path from 'A' to 'T': " + str(g.find_path('A', 'T')))
+    print("Path from 'A' to 'О': " + str(g.find_path('A', 'О')))
 
     print("You start at: " + str(g.current()))
+
     print("Next: " + str(g.next()))
     print("Previous: " + str(g.previous()))
     print("Go to: " + str(g.go_to('B')))
