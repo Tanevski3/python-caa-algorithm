@@ -18,3 +18,12 @@ Python implementation of the Crossbar Adaptive Array (WIP)
  - `python index.py`
 
 Check console and generated graph for results
+
+## Contact
+
+For contact, you can reach me at [marjantanevski@outlook.com](marjantanevski@outlook.com).
+
+## License
+
+MIT © [Marjan Tanevski](marjantanevski@outlook.com)
+
