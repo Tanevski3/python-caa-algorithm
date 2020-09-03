@@ -1,23 +1,32 @@
 # Python implementation of CAA algorithm with example usage
-Python implementation of the Crossbar Adaptive Array (WIP)
+> Python implementation of the Crossbar Adaptive Array (WIP)
 
-# Requirements
+## Getting started 
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+This section will describe requirements needed to satisfy the installation or running of the project.
+
+### Requirements
 
  - Python 3.7
  - Pip
  
-# Nice to have
+### Nice to have
  - Intellij Python
 
-# Install
+### Install
  - `git clone https://github.com/Tanevski3/python-caa-algorithm.git`
  - `cd ./python-caa-algorithm`
  - `pip install -r requirements.txt`
  
-# Run
+### Run
  - `python index.py`
 
 Check console and generated graph for results
+
+## Future changes
+ - Fully implement the CAA algorithm in Python
 
 ## Contact
 
